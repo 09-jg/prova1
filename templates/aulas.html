@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aulas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Gerenciar Aulas</h1>
+    <form method="POST">
+        <label for="aluno_id">Aluno:</label>
+        <select name="aluno_id" required>
+            <option value="">Selecione um Aluno</option>
+            {% for aluno in alunos %}
+                <option value="{{ aluno.id }}">{{ aluno.nome }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="sala_id">Sala:</label>
+        <select name="sala_id" required>
+            <option value="">Selecione uma Sala</option>
+            {% for sala in salas %}
+                <option value="{{ sala.id }}">{{ sala.numero }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="data">Data:</label>
+        <input type="text" name="data" placeholder="Data da Aula" required>
+
+        <button type="submit">Adicionar Aula</button>
+    </form>
+
+    <h2>Lista de Aulas</h2>
+    <ul>
+        {% for aula in aulas %}
+            <li>
+                Aluno: {{ aula.aluno_id }} - Sala: {{ aula.sala_id }} - Data: {{ aula.data }} 
+                <a href="/aulas/edit/{{ aula.id }}">Editar</a>
+                <a href="/aulas/delete/{{ aula.id }}">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Voltar</a>
+</body>
+</html>

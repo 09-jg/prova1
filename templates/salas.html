@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Gerenciar Salas</h1>
+    <form method="POST">
+        <input type="text" name="numero" placeholder="Número da Sala" required>
+        <button type="submit">Adicionar Sala</button>
+    </form>
+    <ul>
+        {% for sala in salas %}
+            <li>
+                {{ sala.numero }} 
+                <a href="/salas/edit/{{ sala.id }}">Editar</a>
+                <a href="/salas/delete/{{ sala.id }}">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Voltar</a>
+</body>
+</html>

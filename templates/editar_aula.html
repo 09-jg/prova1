@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Aula</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Editar Aula</h1>
+    <form method="POST">
+        <label for="aluno_id">Aluno:</label>
+        <select name="aluno_id" required>
+            {% for aluno in alunos %}
+                <option value="{{ aluno.id }}" {% if aluno.id == aula.aluno_id %}selected{% endif %}>{{ aluno.nome }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="sala_id">Sala:</label>
+        <select name="sala_id" required>
+            {% for sala in salas %}
+                <option value="{{ sala.id }}" {% if sala.id == aula.sala_id %}selected{% endif %}>{{ sala.numero }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="data">Data:</label>
+        <input type="text" name="data" value="{{ aula.data }}" required>
+
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/aulas">Cancelar</a>
+</body>
+</html>

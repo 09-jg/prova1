@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alunos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Gerenciar Alunos</h1>
+    <form method="POST">
+        <input type="text" name="nome" placeholder="Nome do Aluno" required>
+        <button type="submit">Adicionar Aluno</button>
+    </form>
+    <ul>
+        {% for aluno in alunos %}
+            <li>
+                {{ aluno.nome }} 
+                <a href="/alunos/edit/{{ aluno.id }}">Editar</a>
+                <a href="/alunos/delete/{{ aluno.id }}">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Voltar</a>
+</body>
+</html>
